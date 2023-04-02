@@ -11,7 +11,7 @@ use std::{sync::Mutex, f64::consts::PI};
 
 use js_sys::Math::random;
 use wasm_bindgen::prelude::*;
-use web_sys::{HtmlCanvasElement, CanvasRenderingContext2d};
+use web_sys::{HtmlCanvasElement, HtmlImageElement, CanvasRenderingContext2d};
 
 // use rand::prelude::*;
 #[macro_use]
@@ -70,14 +70,16 @@ lazy_static! {
         let s1 = (w as f64/CELL_SIZE).ceil() as usize;
         let s2 = (h as f64/CELL_SIZE).ceil() as usize;
 
-        
+        let image = document.get_element_by_id("imgg").unwrap();
+        let image = image.dyn_into::<web_sys::HtmlImageElement>().map_err(|_| ()).unwrap();
         
         Mutex::new(Main {
             canvas,
             context,
             cells: vec![vec![vec![];s1];s2],
             cell_size: (s1, s2),
-            borders: (0.,0.,w as f64,h as f64)
+            borders: (0.,0.,w as f64,h as f64),
+            image
         })
     };
 }
@@ -106,7 +108,8 @@ struct Main {
     context: CanvasRenderingContext2d,
     cells: Vec<Vec<Vec<CellParticle>>>,
     cell_size: (usize,usize),
-    borders: (f64,f64,f64,f64)
+    borders: (f64,f64,f64,f64),
+    image: HtmlImageElement
 }
 
 unsafe impl Sync for Main {}
@@ -326,15 +329,17 @@ fn draw() {
 
         let particle = &p.particles[index];
 
-        ctx.begin_path();
-        let color = format!("rgb({},{},{})",particle.color.0,particle.color.1,particle.color.2);
+        // ctx.begin_path();
+        // let color = format!("rgb({},{},{})",particle.color.0,particle.color.1,particle.color.2);
 
         
-        ctx.set_fill_style(&JsValue::from_str(color.as_str()));
-        ctx.ellipse(particle.position.0, particle.position.1, particle.radius, particle.radius, 0., 0., 2.*std::f64::consts::PI);
+        // ctx.set_fill_style(&JsValue::from_str(color.as_str()));
+        // ctx.ellipse(particle.position.0, particle.position.1, particle.radius, particle.radius, 0., 0., 2.*std::f64::consts::PI);
+        ctx.draw_image_with_html_image_element(&m.image,particle.position.0-7., particle.position.1-7.);
+        // ctx.draw_image_with_html_image_element(&m.image,17.,17.);
         // ctx.ellipse(10., 10., 5., 5., 0., 0., 2.*std::f64::consts::PI);
-        ctx.close_path();
-        ctx.fill();
+        // ctx.close_path();
+        // ctx.fill();
 
         if index+1 == next_index {
             v_squared[v_index] = v_squared[v_index] / ( p.types[v_index].0  as f64); //v_squared[v_index]/(p.types[v_index].0 as f64);

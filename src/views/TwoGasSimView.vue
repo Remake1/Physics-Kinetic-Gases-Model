@@ -22,6 +22,5 @@
 <template>
 <div class="simulation">
   <canvas id="canvas_mkt_basic" width="800" height="600"></canvas>
-  
 </div>
 </template>

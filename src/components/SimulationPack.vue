@@ -15,4 +15,5 @@ function add_particles_big(){
   </div>
   <button @click="add_particles_small" id="add_particles_small">Додати маленьких частинок</button>
   <button @click="add_particles_big" id="add_particles_big">Додати великих частинок</button>
+  <img src="../assets/sticker_15x15.webp" id="imgg">
 </template>
