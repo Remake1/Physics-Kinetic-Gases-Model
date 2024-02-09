@@ -23,4 +23,4 @@ yarn build
 
 ## Acknowledgments
 
-@WindPl - @anefil - Egor Filatov for making WASM and most of the physics simulation part.
+[@WindPl](https://github.com/WindPl) aka [@anefil](https://github.com/anefil) - Egor Filatov for making WASM and most of the physics simulation part.
