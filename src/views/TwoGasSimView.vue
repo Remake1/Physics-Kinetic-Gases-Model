@@ -1,21 +1,17 @@
 <script setup>
-  import { ref, onMounted } from 'vue'
+import {onMounted} from 'vue'
   import * as graph from "../lib/graph.js";
-  
-  
-  const simulation = ref(null)
-  
-  
-  
-  onMounted(() => {
-    async function main() {
+
+  async function main() {
       await graph.init(0.05,8);
       await graph.addMoleculeType(600,4,25,[120,0,0]);
       await graph.addMoleculeType(200,4,54,[0,0,125]);
       await graph.watchParticle(1);
       await graph.render();
-    }
-    main();
+  }
+
+  onMounted(async () => {
+      await main();
   }) 
 </script>
 

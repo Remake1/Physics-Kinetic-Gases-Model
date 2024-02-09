@@ -4,10 +4,10 @@
 
 <template>
   <div class="header">
-    <router-link to="/"> Головна сторінка </router-link>
+    <router-link to="/"> Main page </router-link>
 <!--    EXAMPLE -->
-    <router-link to="/IdealGas"> Симуляція Ідеального Газу </router-link>
-    <router-link to="/TwoGas"> Суміш газів </router-link>
+    <router-link to="/IdealGas"> Ideal Gas Simulation </router-link>
+    <router-link to="/TwoGas"> Mixture of gases </router-link>
   </div>
 </template>
 

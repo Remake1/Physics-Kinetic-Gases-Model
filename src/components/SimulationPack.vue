@@ -13,6 +13,6 @@ function add_particles_big(){
   <div class="simulation">
     <canvas id="canvas_mkt_basic" width="800" height="600"></canvas>
   </div>
-  <button @click="add_particles_small" id="add_particles_small">Додати маленьких частинок</button>
-  <button @click="add_particles_big" id="add_particles_big">Додати великих частинок</button>
+  <button @click="add_particles_small" id="add_particles_small">Add small particles</button>
+  <button @click="add_particles_big" id="add_particles_big">Add large particles</button>
 </template>

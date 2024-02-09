@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Молекулярно кінетична теорія</h1>
+    <h1>Molecular kinetic theory</h1>
   </header>
 </template>
 
